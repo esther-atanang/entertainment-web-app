@@ -1,0 +1,956 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap");
+:root {
+  --bright-orange: hsl(0,97%,63%);
+  --very-dark-blue: hsl(223, 30%, 9%);
+  --light-blue: hsl(223,23%,46%);
+  --dark-blue: hsl(223,36%,14%);
+  --white: hsl(0,0%,100%);
+  --font: "Outfit", sans-serif;
+}
+
+*, *::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: var(--font);
+}
+
+p {
+  white-space: nowrap;
+}
+
+body {
+  background-color: var(--very-dark-blue);
+  overflow-x: hidden;
+  white-space: nowrap;
+}
+
+.content .searchTitle, .the-shows .searchTitle, .the-movies .searchTitle, .the-tvseries .searchTitle {
+  padding: 0rem 1.5rem;
+  padding-top: 1.5rem;
+  font-weight: 200;
+}
+.content .search-content, .the-shows .search-content, .the-movies .search-content, .the-tvseries .search-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  padding: 1rem;
+  gap: 10px;
+}
+.content .search-results .block, .the-shows .search-results .block, .the-movies .search-results .block, .the-tvseries .search-results .block {
+  position: relative;
+}
+.content .search-results .block .play, .the-shows .search-results .block .play, .the-movies .search-results .block .play, .the-tvseries .search-results .block .play {
+  visibility: hidden;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  background-color: rgba(255, 255, 255, 0.182);
+  width: 120px;
+  height: 50px;
+  padding: 1rem;
+  border-radius: 25px;
+  align-items: center;
+  -moz-column-gap: 20px;
+       column-gap: 20px;
+  cursor: pointer;
+}
+.content .search-results .block .play p, .the-shows .search-results .block .play p, .the-movies .search-results .block .play p, .the-tvseries .search-results .block .play p {
+  font-size: 1.2rem;
+}
+.content .search-results .block .play button, .the-shows .search-results .block .play button, .the-movies .search-results .block .play button, .the-tvseries .search-results .block .play button {
+  border: none;
+  background: transparent;
+}
+.content .search-results .block .thumbnail, .the-shows .search-results .block .thumbnail, .the-movies .search-results .block .thumbnail, .the-tvseries .search-results .block .thumbnail {
+  width: 100%;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.content .search-results .block .bookmark, .the-shows .search-results .block .bookmark, .the-movies .search-results .block .bookmark, .the-tvseries .search-results .block .bookmark {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  right: 10px;
+  top: 10px;
+  width: 35px;
+  height: 35px;
+  border: none;
+  outline: none;
+  border-radius: 50%;
+  background-color: rgba(4, 4, 4, 0.392);
+}
+.content .search-results .info .first, .the-shows .search-results .info .first, .the-movies .search-results .info .first, .the-tvseries .search-results .info .first {
+  display: flex;
+  align-items: center;
+  -moz-column-gap: 10px;
+       column-gap: 10px;
+  font-weight: 200;
+  font-size: 0.8rem;
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+.content .search-results .info .first .dot, .the-shows .search-results .info .first .dot, .the-movies .search-results .info .first .dot, .the-tvseries .search-results .info .first .dot {
+  height: 4.5px;
+  width: 4.5px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.418);
+}
+.content .search-results .info .first .inner-first, .the-shows .search-results .info .first .inner-first, .the-movies .search-results .info .first .inner-first, .the-tvseries .search-results .info .first .inner-first {
+  display: flex;
+  font-size: 0.8rem;
+  align-items: center;
+  -moz-column-gap: 5px;
+       column-gap: 5px;
+  text-transform: capitalize;
+}
+.content .search-results .info .second .title, .the-shows .search-results .info .second .title, .the-movies .search-results .info .second .title, .the-tvseries .search-results .info .second .title {
+  font-size: 1rem;
+  font-weight: 400;
+}
+.content .search-results .active .play, .the-shows .search-results .active .play, .the-movies .search-results .active .play, .the-tvseries .search-results .active .play {
+  visibility: visible;
+}
+.content .search-results .active::after, .the-shows .search-results .active::after, .the-movies .search-results .active::after, .the-tvseries .search-results .active::after {
+  content: "";
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  border-radius: 10.1px;
+  height: 100%;
+  z-index: -999;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+}
+nav .container {
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 20px;
+  align-items: center;
+  width: 100%;
+  height: 80px;
+  background-color: var(--dark-blue);
+}
+nav .container .categories {
+  display: flex;
+  -moz-column-gap: 30px;
+       column-gap: 30px;
+}
+nav .container .categories svg path {
+  cursor: pointer;
+}
+nav .container .categories svg path:hover {
+  fill: var(--white);
+}
+nav .container .categories .change path {
+  fill: var(--white);
+}
+nav .container .profile-img {
+  width: 30px;
+  border: 1px solid var(--white);
+  border-radius: 50%;
+}
+
+.search form {
+  display: flex;
+  align-items: center;
+  padding-top: 1rem;
+  -moz-column-gap: 15px;
+       column-gap: 15px;
+}
+.search input {
+  width: 100%;
+  background: transparent;
+  font-size: 1.5rem;
+  font-weight: 200;
+  border: none;
+  outline: none;
+  color: var(--white);
+}
+.search button {
+  background: transparent;
+  outline: none;
+  border: none;
+}
+
+.login-page, .signup-page {
+  background: var(--very-dark-blue);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  color: white;
+}
+.login-page main, .signup-page main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 420px;
+  row-gap: 50px;
+  padding: 2rem;
+}
+.login-page .login-card, .login-page .signup-card, .signup-page .login-card, .signup-page .signup-card {
+  background: var(--dark-blue);
+  padding: 2rem;
+  border-radius: 15px;
+  display: flex;
+  max-width: 420px;
+  width: 100%;
+  flex-direction: column;
+  row-gap: 20px;
+}
+.login-page .login-card h1, .login-page .signup-card h1, .signup-page .login-card h1, .signup-page .signup-card h1 {
+  font-weight: 200;
+}
+.login-page .login-card p, .login-page .signup-card p, .signup-page .login-card p, .signup-page .signup-card p {
+  text-align: center;
+}
+.login-page .login-card a, .login-page .signup-card a, .signup-page .login-card a, .signup-page .signup-card a {
+  color: var(--bright-orange);
+  text-decoration: none;
+  margin-left: 5px;
+}
+.login-page .login-card form, .login-page .signup-card form, .signup-page .login-card form, .signup-page .signup-card form {
+  display: flex;
+  flex-direction: column;
+}
+.login-page .login-card form input, .login-page .signup-card form input, .signup-page .login-card form input, .signup-page .signup-card form input {
+  width: 300px;
+}
+.login-page .login-card form .input-container, .login-page .signup-card form .input-container, .signup-page .login-card form .input-container, .signup-page .signup-card form .input-container {
+  position: relative;
+}
+.login-page .login-card form .input-container p, .login-page .signup-card form .input-container p, .signup-page .login-card form .input-container p, .signup-page .signup-card form .input-container p {
+  display: none;
+  position: absolute;
+  right: 0px;
+  bottom: 22px;
+  font-weight: 200;
+  font-size: 0.85rem;
+  color: var(--bright-orange);
+}
+.login-page .login-card form .error input, .login-page .signup-card form .error input, .signup-page .login-card form .error input, .signup-page .signup-card form .error input {
+  border-color: var(--bright-orange);
+}
+.login-page .login-card form .error p, .login-page .signup-card form .error p, .signup-page .login-card form .error p, .signup-page .signup-card form .error p {
+  display: block;
+}
+.login-page .login-card form input, .login-page .signup-card form input, .signup-page .login-card form input, .signup-page .signup-card form input {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: var(--white);
+  border-bottom: 1px solid var(--light-blue);
+  padding: 1rem;
+  font-size: 1rem;
+  font-weight: 200;
+  margin-bottom: 5px;
+  caret-color: var(--bright-orange);
+}
+.login-page .login-card form input:focus, .login-page .signup-card form input:focus, .signup-page .login-card form input:focus, .signup-page .signup-card form input:focus {
+  border-color: white;
+}
+.login-page .login-card form input[type=button], .login-page .signup-card form input[type=button], .signup-page .login-card form input[type=button], .signup-page .signup-card form input[type=button] {
+  background-color: var(--bright-orange);
+  border: none;
+  color: var(--white);
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  border-radius: 10px;
+  font-weight: 200;
+  font-size: 1rem;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  cursor: pointer;
+}
+.login-page .login-card form input[type=button]:hover, .login-page .signup-card form input[type=button]:hover, .signup-page .login-card form input[type=button]:hover, .signup-page .signup-card form input[type=button]:hover {
+  background-color: var(--white);
+  color: var(--very-dark-blue);
+}
+
+.main {
+  background-color: var(--very-dark-blue);
+  color: var(--white);
+}
+.main .search {
+  padding: 0.5rem 1.5rem;
+}
+.main .search form {
+  display: flex;
+  align-items: center;
+  padding-top: 1rem;
+  -moz-column-gap: 15px;
+       column-gap: 15px;
+}
+.main .search input {
+  width: 100%;
+  background: transparent;
+  font-size: 1.5rem;
+  font-weight: 200;
+  border: none;
+  outline: none;
+  color: var(--white);
+}
+.main .search button {
+  background: transparent;
+  outline: none;
+  border: none;
+}
+.main .trending {
+  padding: 1rem 0rem;
+  padding-left: 1.5rem;
+}
+.main .trending h2 {
+  font-weight: 200;
+  margin-bottom: 1rem;
+}
+.main .trending .trend {
+  overflow-x: scroll;
+  -moz-column-gap: 30px;
+       column-gap: 30px;
+  display: flex;
+}
+.main .trending .trend .movie {
+  width: 300px;
+}
+.main .trending .trend .movie .block {
+  position: relative;
+}
+.main .trending .trend .movie .block .play {
+  visibility: hidden;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  background-color: rgba(255, 255, 255, 0.182);
+  width: 120px;
+  height: 50px;
+  padding: 1rem;
+  border-radius: 25px;
+  align-items: center;
+  -moz-column-gap: 20px;
+       column-gap: 20px;
+  cursor: pointer;
+}
+.main .trending .trend .movie .block .play p {
+  font-size: 1.2rem;
+}
+.main .trending .trend .movie .block .play button {
+  border: none;
+  background: transparent;
+}
+.main .trending .trend .movie .block .thumbnail {
+  width: 300px;
+  border-radius: 10px;
+}
+.main .trending .trend .movie .block .bookmark {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  right: 10px;
+  top: 10px;
+  width: 35px;
+  height: 35px;
+  border: none;
+  outline: none;
+  border-radius: 50%;
+  background-color: rgba(4, 4, 4, 0.392);
+}
+.main .trending .trend .movie .block .bookmark:hover {
+  background: white;
+}
+.main .trending .trend .movie .block .bookmark:hover svg path {
+  stroke: black;
+}
+.main .trending .trend .movie .active .play {
+  visibility: visible;
+}
+.main .trending .trend .movie .active::after {
+  content: "";
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  border-radius: 10.1px;
+  height: 100%;
+  z-index: -999;
+}
+.main .trending .trend .movie .info {
+  position: absolute;
+  bottom: 20px;
+  left: 15px;
+}
+.main .trending .trend .movie .info .first {
+  display: flex;
+  align-items: center;
+  -moz-column-gap: 10px;
+       column-gap: 10px;
+  font-weight: 200;
+  font-size: 0.8rem;
+}
+.main .trending .trend .movie .info .first .dot {
+  height: 4.5px;
+  width: 4.5px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.418);
+}
+.main .trending .trend .movie .info .first .inner-first {
+  display: flex;
+  font-size: 0.8rem;
+  align-items: center;
+  -moz-column-gap: 5px;
+       column-gap: 5px;
+  text-transform: capitalize;
+}
+.main .trending .trend .movie .info .second .title {
+  font-size: 1rem;
+  font-weight: 400;
+}
+.main .recommended {
+  padding: 0rem 1.2rem;
+  overflow-x: hidden;
+}
+.main .recommended .recommend-movies {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: center;
+  gap: 15px;
+}
+.main .recommended h2 {
+  font-weight: 200;
+  margin-bottom: 1rem;
+}
+.main .recommended .movie {
+  display: inline;
+}
+.main .recommended .movie .block {
+  position: relative;
+}
+.main .recommended .movie .block .play {
+  visibility: hidden;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  background-color: rgba(255, 255, 255, 0.182);
+  width: 120px;
+  height: 50px;
+  padding: 1rem;
+  border-radius: 25px;
+  align-items: center;
+  -moz-column-gap: 20px;
+       column-gap: 20px;
+  cursor: pointer;
+}
+.main .recommended .movie .block .play p {
+  font-size: 1.2rem;
+}
+.main .recommended .movie .block .play button {
+  border: none;
+  background: transparent;
+}
+.main .recommended .movie .block .thumbnail {
+  width: 100%;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.main .recommended .movie .block .bookmark {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  right: 10px;
+  top: 10px;
+  width: 35px;
+  height: 35px;
+  border: none;
+  outline: none;
+  border-radius: 50%;
+  background-color: rgba(4, 4, 4, 0.392);
+}
+.main .recommended .movie .block .bookmark:hover {
+  background: white;
+}
+.main .recommended .movie .block .bookmark:hover svg path {
+  stroke: black;
+}
+.main .recommended .movie .info .first {
+  display: flex;
+  align-items: center;
+  -moz-column-gap: 10px;
+       column-gap: 10px;
+  font-weight: 200;
+  font-size: 0.8rem;
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+.main .recommended .movie .info .first .dot {
+  height: 4.5px;
+  width: 4.5px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.418);
+}
+.main .recommended .movie .info .first .inner-first {
+  display: flex;
+  font-size: 0.8rem;
+  align-items: center;
+  -moz-column-gap: 5px;
+       column-gap: 5px;
+  text-transform: capitalize;
+}
+.main .recommended .movie .info .second .title {
+  font-size: 1rem;
+  font-weight: 400;
+}
+.main .recommended .movie .active .play {
+  visibility: visible;
+}
+.main .recommended .movie .active::after {
+  content: "";
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  border-radius: 10.1px;
+  height: 100%;
+  z-index: -999;
+}
+
+.movies-page {
+  color: white;
+}
+.movies-page section {
+  padding: 0.9rem;
+}
+.movies-page .the-movies {
+  padding: 0rem 1.2rem;
+}
+.movies-page .the-movies .movies-block {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  justify-content: center;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.movies-page .the-movies h2 {
+  font-weight: 200;
+  margin-bottom: 1rem;
+}
+.movies-page .the-movies .movie {
+  display: inline;
+}
+.movies-page .the-movies .movie .block {
+  position: relative;
+}
+.movies-page .the-movies .movie .block .play {
+  visibility: hidden;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  background-color: rgba(255, 255, 255, 0.182);
+  width: 120px;
+  height: 50px;
+  padding: 1rem;
+  border-radius: 25px;
+  align-items: center;
+  -moz-column-gap: 20px;
+       column-gap: 20px;
+  cursor: pointer;
+}
+.movies-page .the-movies .movie .block .play p {
+  font-size: 1.2rem;
+}
+.movies-page .the-movies .movie .block .play button {
+  border: none;
+  background: transparent;
+}
+.movies-page .the-movies .movie .block .thumbnail {
+  width: 100%;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.movies-page .the-movies .movie .block .bookmark {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  right: 10px;
+  top: 10px;
+  width: 35px;
+  height: 35px;
+  border: none;
+  outline: none;
+  border-radius: 50%;
+  background-color: rgba(4, 4, 4, 0.392);
+}
+.movies-page .the-movies .movie .block .bookmark:hover {
+  background-color: white;
+}
+.movies-page .the-movies .movie .block .bookmark:hover svg path {
+  stroke: black;
+}
+.movies-page .the-movies .movie .info .first {
+  display: flex;
+  align-items: center;
+  -moz-column-gap: 10px;
+       column-gap: 10px;
+  font-weight: 200;
+  font-size: 0.8rem;
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+.movies-page .the-movies .movie .info .first .dot {
+  height: 4.5px;
+  width: 4.5px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.418);
+}
+.movies-page .the-movies .movie .info .first .inner-first {
+  display: flex;
+  font-size: 0.8rem;
+  align-items: center;
+  -moz-column-gap: 5px;
+       column-gap: 5px;
+  text-transform: capitalize;
+}
+.movies-page .the-movies .movie .info .second .title {
+  font-size: 1rem;
+  font-weight: 400;
+}
+.movies-page .the-movies .movie .active .play {
+  visibility: visible;
+}
+.movies-page .the-movies .movie .active::after {
+  content: "";
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  border-radius: 10.1px;
+  height: 100%;
+  z-index: -999;
+}
+
+.tv-page section {
+  padding: 1rem;
+}
+.tv-page .the-tvseries {
+  color: white;
+  padding: 0rem 1.2rem;
+}
+.tv-page .the-tvseries .tv-block {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.tv-page .the-tvseries h2 {
+  font-weight: 200;
+  margin-bottom: 1rem;
+}
+.tv-page .the-tvseries .series {
+  display: inline;
+}
+.tv-page .the-tvseries .series .block {
+  position: relative;
+}
+.tv-page .the-tvseries .series .block .play {
+  visibility: hidden;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  background-color: rgba(255, 255, 255, 0.182);
+  width: 120px;
+  height: 50px;
+  padding: 1rem;
+  border-radius: 25px;
+  align-items: center;
+  -moz-column-gap: 20px;
+       column-gap: 20px;
+  cursor: pointer;
+}
+.tv-page .the-tvseries .series .block .play p {
+  font-size: 1.2rem;
+}
+.tv-page .the-tvseries .series .block .play button {
+  border: none;
+  background: transparent;
+}
+.tv-page .the-tvseries .series .block .thumbnail {
+  width: 100%;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.tv-page .the-tvseries .series .block .bookmark {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  right: 10px;
+  top: 10px;
+  width: 35px;
+  height: 35px;
+  border: none;
+  outline: none;
+  border-radius: 50%;
+  background-color: rgba(4, 4, 4, 0.392);
+}
+.tv-page .the-tvseries .series .block .bookmark:hover {
+  background-color: white;
+}
+.tv-page .the-tvseries .series .block .bookmark:hover svg path {
+  stroke: black;
+}
+.tv-page .the-tvseries .series .info .first {
+  display: flex;
+  align-items: center;
+  -moz-column-gap: 10px;
+       column-gap: 10px;
+  font-weight: 200;
+  font-size: 0.8rem;
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+.tv-page .the-tvseries .series .info .first .dot {
+  height: 4.5px;
+  width: 4.5px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.418);
+}
+.tv-page .the-tvseries .series .info .first .inner-first {
+  display: flex;
+  font-size: 0.8rem;
+  align-items: center;
+  -moz-column-gap: 5px;
+       column-gap: 5px;
+  text-transform: capitalize;
+}
+.tv-page .the-tvseries .series .info .second .title {
+  font-size: 1rem;
+  font-weight: 400;
+}
+.tv-page .the-tvseries .series .active .play {
+  visibility: visible;
+}
+.tv-page .the-tvseries .series .active::after {
+  content: "";
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  border-radius: 10.1px;
+  height: 100%;
+  z-index: -999;
+}
+
+.bookmark-page section {
+  padding: 1rem;
+}
+.bookmark-page .the-shows {
+  color: white;
+  padding: 0rem 1.2rem;
+  width: 100%;
+}
+.bookmark-page .the-shows .shows-block, .bookmark-page .the-shows .tvShow-series {
+  display: grid;
+  grid-template-areas: "a a";
+  gap: 20px;
+  margin-bottom: 2rem;
+}
+.bookmark-page .the-shows h2 {
+  font-weight: 200;
+  margin-bottom: 1rem;
+}
+.bookmark-page .the-shows .show, .bookmark-page .the-shows .tv-show {
+  display: inline;
+}
+.bookmark-page .the-shows .show .block, .bookmark-page .the-shows .tv-show .block {
+  position: relative;
+}
+.bookmark-page .the-shows .show .block .play, .bookmark-page .the-shows .tv-show .block .play {
+  visibility: hidden;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  background-color: rgba(255, 255, 255, 0.182);
+  width: 120px;
+  height: 50px;
+  padding: 1rem;
+  border-radius: 25px;
+  align-items: center;
+  -moz-column-gap: 20px;
+       column-gap: 20px;
+  cursor: pointer;
+}
+.bookmark-page .the-shows .show .block .play p, .bookmark-page .the-shows .tv-show .block .play p {
+  font-size: 1.2rem;
+}
+.bookmark-page .the-shows .show .block .play button, .bookmark-page .the-shows .tv-show .block .play button {
+  border: none;
+  background: transparent;
+}
+.bookmark-page .the-shows .show .block .thumbnail, .bookmark-page .the-shows .tv-show .block .thumbnail {
+  width: 100%;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.bookmark-page .the-shows .show .block .bookmark, .bookmark-page .the-shows .tv-show .block .bookmark {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  right: 10px;
+  top: 10px;
+  width: 35px;
+  height: 35px;
+  border: none;
+  outline: none;
+  border-radius: 50%;
+  background-color: rgba(4, 4, 4, 0.392);
+}
+.bookmark-page .the-shows .show .block .bookmark:hover, .bookmark-page .the-shows .tv-show .block .bookmark:hover {
+  background-color: white;
+}
+.bookmark-page .the-shows .show .block .bookmark:hover svg path, .bookmark-page .the-shows .tv-show .block .bookmark:hover svg path {
+  stroke: black;
+}
+.bookmark-page .the-shows .show .info .first, .bookmark-page .the-shows .tv-show .info .first {
+  display: flex;
+  align-items: center;
+  -moz-column-gap: 10px;
+       column-gap: 10px;
+  font-weight: 200;
+  font-size: 0.8rem;
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+.bookmark-page .the-shows .show .info .first .dot, .bookmark-page .the-shows .tv-show .info .first .dot {
+  height: 4.5px;
+  width: 4.5px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.418);
+}
+.bookmark-page .the-shows .show .info .first .inner-first, .bookmark-page .the-shows .tv-show .info .first .inner-first {
+  display: flex;
+  font-size: 0.8rem;
+  align-items: center;
+  -moz-column-gap: 5px;
+       column-gap: 5px;
+  text-transform: capitalize;
+}
+.bookmark-page .the-shows .show .info .second .title, .bookmark-page .the-shows .tv-show .info .second .title {
+  font-size: 1rem;
+  font-weight: 400;
+}
+.bookmark-page .the-shows .show .active .play, .bookmark-page .the-shows .tv-show .active .play {
+  visibility: visible;
+}
+.bookmark-page .the-shows .show .active::after, .bookmark-page .the-shows .tv-show .active::after {
+  content: "";
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  border-radius: 10.1px;
+  height: 100%;
+  z-index: -999;
+}
+
+@media screen and (min-width: 50em) {
+  .content .search-content, .the-shows .search-content, .the-movies .search-content, .the-tvseries .search-content {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+  }
+  nav .container {
+    margin: 1rem;
+    border-radius: 20px;
+  }
+  .main .trending .trend .movie {
+    width: 450px;
+  }
+  .main .trending .trend .movie .block .thumbnail {
+    width: 450px;
+  }
+  .main .recommended .recommend-movies {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+  }
+  .movies-page .the-movies .movies-block {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .tv-page .the-tvseries .tv-block {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .bookmark-page .the-shows .shows-block, .bookmark-page .the-shows .tvShow-series {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+@media screen and (min-width: 62em) {
+  body {
+    display: flex;
+  }
+  .content .search-content, .the-shows .search-content, .the-movies .search-content, .the-tvseries .search-content {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+  main {
+    overflow-x: hidden;
+  }
+  nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  nav .container {
+    display: grid;
+    grid-template-rows: 50px 200px 1fr;
+    align-items: center;
+    justify-content: center;
+    width: 90px;
+    height: 600px;
+    padding-top: 30px;
+    place-items: end;
+    padding-bottom: 30px;
+  }
+  nav .container .categories {
+    flex-direction: column;
+    justify-self: center;
+    align-content: flex-start;
+    row-gap: 30px;
+  }
+  .main .recommended .recommend-movies {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+  .movies-page .the-movies .movies-block {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+  .tv-page .the-tvseries .tv-block {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+  .bookmark-page .the-shows .shows-block, .bookmark-page .the-shows .tvShow-series {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}/*# sourceMappingURL=style.css.map */

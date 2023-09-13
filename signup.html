@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/style.css">
+    <title>Sign up page</title>
+</head>
+<body class="signup-page">
+    <main>
+        <div class="icon"><img src="./assets/logo.svg" alt=""></div>
+        <div class="signup-card">
+            <h1>Sign Up</h1>
+            <form name="signup-form" action="">
+                <div class="input-container">
+                    <input name="email" type="text" placeholder="Email address" autocomplete="on">
+                    <p class="error-message"></p>
+                </div>
+                
+                <div class="input-container">
+                    <input name="password" type="password" placeholder="Password" autocomplete="on">
+                    <p class="error-message"></p>
+                </div>
+                
+                <div class="input-container">
+                    <input name="confirm-password" type="password" placeholder="Repeat Password">
+                    <p class="error-message"></p>
+                </div>
+                
+                <input class="signup-btn" type="button" value="Create an account">
+                <p>Already have an account? <a href="./login.html">Login</a> </p>
+            </form>
+        </div>
+    </main>
+    <script src="./signup.js"></script>
+</body>
+</html>

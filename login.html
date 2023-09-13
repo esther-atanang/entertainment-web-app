@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/style.css">
+    <title>Login page</title>
+</head>
+<body class="login-page">
+    <main>
+        <div class="icon"><img src="./assets/logo.svg" alt=""></div>
+        <div class="login-card">
+            <h1>Login</h1>
+            <form name="login-form" action="">
+                <div class="input-container">
+                    <input name="user-email" type="text" placeholder="Email address" autocomplete="on">˜
+                    <p class="error-message"></p>
+                </div>
+                
+                <div class="input-container">
+                    <input name="user-password" type="password" placeholder="Password" autocomplete="on">
+                    <p class="error-message"></p>
+                </div>
+                <input class="login-btn" type="button" value="Login to your account">
+                <p>Don't have an account? <a href="./signup.html">Sign Up</a> </p>
+            </form>
+        </div>
+    </main>
+    <script src="./login.js"></script>
+</body>
+</html>
